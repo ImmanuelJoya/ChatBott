@@ -1,6 +1,6 @@
 import cors from "cors"
 import dotenv from "dotenv"
-import express from "express"
+import express, { Request, Response } from "express"
 import { StreamChat } from "stream-chat"
 
 dotenv.config()
@@ -18,28 +18,30 @@ const chatClient = StreamChat.getInstance(
     process.env.STREAM_API_SECRET!
 )
 
-//Register user with stream chat 
-app.post('/register-user', async (req: Request, res: Response): Promise<any> => {
-    const { name, email } = req.body
+// Register user with Stream Chat
+app.post(
+    '/register-user',
+    async (req: Request, res: Response): Promise<any> => {
+        const { name, email } = req.body;
 
-    if (!name || !email) {
-        return res.status(400).json({ error: 'Missing name or email' })
-    }
+        if (!name || !email) {
+            return res.status(400).json({ error: 'Missing name or email' })
+        }
 
-    try {
+        try {
 
-        const userId = email.replace(/[^a-zA-Z0-9]/g, '_') //replace special characters with underscore
-        console.log(userId);
+            const userId = email.replace(/[^a-zA-Z0-9]/g, '_') //replace special characters with underscore
+            console.log(userId);
 
-        res.status(200).json({ message: 'User registered successfully' })
-    }
-    catch (error) {
-        res.status(500).json({ error: 'Internal server error' })
-    }
+            res.status(200).json({ message: 'User registered successfully' })
+        }
+        catch (error) {
+            res.status(500).json({ error: 'Internal server error' })
+        }
 
 
 
-})
+    })
 
 const PORT = process.env.PORT || 5000
 
