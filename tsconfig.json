@@ -5,7 +5,8 @@
     // Controls how modules are resolved. "NodeNext" enables native ESM support.
     "moduleResolution": "NodeNext",
     // Target ECMAScript Next to enable the latest JavaScript features.
-    "target": "ESNext",
+    "target": "ES2020",
+    //target": "NodeNext",
     // Output directory for compiled JavaScript files (only used if "noEmit" is false). 
     "outDir": "./dist",
     // Root directory for TypeScript source files.
@@ -20,6 +21,8 @@
     "skipLibCheck": true
   },
   "exclude": [
-    "drizzle.config.ts"
-  ]
+    "drizzle.config.ts","node_modules"
+  ],
+  "include": ["src/**/*"],
+  // "exclude": ["node_modules"]
 }
